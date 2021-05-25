@@ -1,0 +1,14 @@
+galaxy_info:
+  author: Chahat Nayar
+  description: Installs and setup Grafana to serve dashboards through Nginx
+  min_ansible_version: 1.9
+  license: MIT
+  platforms:
+  - name: Amazon
+  - name: EL
+    versions:
+    - 7
+  categories:
+  - system
+  - monitoring
+dependencies: []

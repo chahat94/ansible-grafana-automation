@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  remote_user: root
+  become: yes
+  connection: local
+  roles:
+    - { role: ansible-grafana-automation }
+  handlers:
+    - include: ../handlers/main.yml
+  vars_files:
+    - ../defaults/main.yml
+    - ../vars/main.yml

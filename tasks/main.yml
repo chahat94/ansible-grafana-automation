@@ -1,0 +1,18 @@
+---
+# tasks file for ansible-role-grafana
+
+- name: "Main | Install the correct repository"
+  include: "Amazon.yml"
+  when: ansible_distribution == "Amazon"
+
+- name: "Main | Setup grafana"
+  template: src=grafana.ini.j2 dest=/etc/grafana/grafana.ini
+  notify: grafana restart
+
+- name: "Main | Ensure that Grafana-Server is started and service is enabled after reboot"
+  service: name=grafana-server state=started enabled=yes
+
+- name: "Main | Install plugins"
+  command: "grafana-cli plugins install {{item}}"
+  with_items: "{{grafana_plugins_install}}"
+  notify: grafana restart
